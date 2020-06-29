@@ -1,0 +1,16 @@
+{
+    "name": "nishchay/nishchay",
+    "description": "Nishchay PHP Framework",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "require": {
+        "nishchay/framework": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "": ""
+        }
+    }
+}
