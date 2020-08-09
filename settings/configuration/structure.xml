@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!-- ********** HMVC Structure **********  --> 
+<!--<Application>
+    <feature continue='1'>
+        <controllers nest='1'/>
+        <Models nest='1'/>
+        <entities nest='1'/>
+        <views nest='1'/>
+    </feature>
+</Application>-->
+
+<!-- ********** Inner Hirarchy Structure **********  --> 
+<!--<Application>
+    <controllers>
+        <feature continue='1'/>
+    </controllers>
+    <Models>
+        <feature continue='1'/>
+    </Models>
+    <views>
+        <feature continue='1'/>
+    </views>
+    <entities>
+        <feature continue='1'/>
+    </entities>
+</Application>-->
+
+<!-- **********  Module(Controller, views) and shared Models, Entities  **********  --> 
+<!--<Application>
+    <feature continue='1'>
+        <controllers/>
+        <views/>
+    </feature>
+    <Models>
+        <feature continue='1'/>
+    </Models>
+    <entities/>
+</Application>-->
+
+<!-- ********** Our recommedation  **********  --> 
+<Application>
+    <Controllers nest='1' require='1'>
+        <!-- Routes which should be accessed directly. -->
+        <Direct/>
+        <!-- Routes which requires login into application. -->
+        <Secure/>
+        <!-- All routes which are services. -->
+        <Service/>
+    </Controllers>
+    <Entities nest='1'/>
+    <Models type='model' nest='1'/>
+    <views require='1' nest='1'/>
+    <Events/>
+    <!-- Exception handlers -->
+    <Handler/>
+    <!-- Form classes -->
+    <Forms type='form'/>
+    <!-- Various feature implementations -->
+    <Features type='feature'/>
+</Application>
+<!-- ********** Basic Structure  **********  --> 
+<!--<Application>
+    <Controllers require='1' root='1'/>
+    <Entities nest='1' root='1'/>
+    <Models nest='1' root='1'/>
+    <views require='1' nest='1' root='1'/>
+</Application>-->

@@ -4,7 +4,8 @@
     "type": "project",
     "license": "BSD-3-Clause",
     "require": {
-        "nishchay/framework": "*"
+        "php": "~7.1",
+        "nishchay/framework": "~1.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -12,5 +13,10 @@
         "psr-4": {
             "": ""
         }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "Installer::install"
+        ]
     }
 }

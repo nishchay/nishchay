@@ -1,0 +1,14 @@
+{
+    "required": "{field} is required",
+    "minLength": "{field} should be at least {0} character long",
+    "maxLength": "{field} should not be greater than {0} character",
+    "terms": "Please accept terms and conditions",
+    "username": {
+        "invalid": "Invalid username",
+        "exists": "User name already registered."
+    },
+    "password": {
+        "invalid": "Invalid password"
+    },
+    "internalError": "Failure in our system, please try after sometime"
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Nishchay - Open structure PHP framework</title>
+        <link rel="icon" type="image/png" href="{{ getResourceURL('images/favicon.png')|raw }}" />
+        <link type="text/css" rel="stylesheet" href="{{ getResourceURL('css/bootstrap.min.css')|raw }}"/>
+        <style type="text/css">
+            @font-face {
+                font-family: 'Hind';
+                font-style: normal;
+                font-weight: 300;
+                src: local('Hind Light'), local('Hind-Light'), url("{{ getResourceURL('fonts/google-hind.woff2')|raw }}") format('woff2');
+            }
+            body{margin: 0;padding: 0;background-color: #fff;font-family: 'Hind', sans-serif;font-size: 15px}
+            h3{text-align: center;margin: 30px 0}
+            a{color: #f8085b;text-decoration: none}
+            a:hover{color: #439dff;text-decoration: none}
+            .header{padding: 10px 0;box-shadow:0 0 3px #f8085b;text-align: center}
+            .header img{width: 150px}
+            h1{margin-top: 50px;font-size: 10vh;text-align: center}
+            .footer {background-color: #FFF;margin-top: 20px;bottom: 0;width: 100%;padding: 10px;box-sizing: border-box;border-top: 1px solid #439dff;box-shadow: 1px 1px 3px #439dff;}
+            .footer h5{text-align: center;color: #439dff}
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid wrapper">
+            <div class="row text-center header">
+                <div class="col-lg-12">
+                    <a href="/"><img src="{{ getResourceURL('images/nishchay.png')|raw }}" alt="Nishchay Logo"/></a>
+                </div>
+            </div>
+            <div class="row descr-box">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    {% block content %}{% endblock %}
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+        <div class="footer fixed-bottom" id="footer">
+            <h5>We only need one Nishchay(Decision)</h5>
+        </div>
+    </body>
+</html>
