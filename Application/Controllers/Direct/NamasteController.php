@@ -2,6 +2,7 @@
 
 namespace Application\Controllers\Direct;
 
+use Nishchay;
 use Nishchay\Http\Request\RequestStore;
 
 /**
