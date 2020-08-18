@@ -1,4 +1,6 @@
-CREATE DATABASE NishchayDB;
+CREATE DATABASE `NishchayDB`;
+
+USE `NishchayDB`;
 
 CREATE TABLE `User` (
     `userId` BIGINT(20) NOT NULL AUTO_INCREMENT,
