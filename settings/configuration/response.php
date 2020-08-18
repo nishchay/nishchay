@@ -35,7 +35,7 @@ return [
         /**
          * To enable or disable template caching
          */
-        'caching' => true,
+        'caching' => false,
         /**
          * Applicable for TWIG template engine only .
          * Twig doesn't allow php function to be executed in twig template but
