@@ -26,5 +26,13 @@ class NamasteController
         ]);
         return 'view:namaste';
     }
+    
+    /**
+     * @Route(see=true)
+     */
+    public function maintenanceRoute()
+    {
+        return 'error/maintenance';
+    }
 
 }
