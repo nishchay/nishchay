@@ -1,6 +1,5 @@
 composer.lock
 logs/
-persisted/
 vendor/
 /nbproject/
 .DS_Store
