@@ -39,7 +39,7 @@
 
 <!-- ********** Our recommedation  **********  --> 
 <Application>
-    <Controllers nest='1' require='1'>
+    <Controllers nest='1' require='1' root='1'>
         <!-- Routes which should be accessed directly. -->
         <Direct/>
         <!-- Routes which requires login into application. -->
