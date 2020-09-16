@@ -84,5 +84,24 @@ return [
              */
             'expiry' => 1800
         ]
+    ],
+    /**
+     * Below setting is used while fetching client IP.
+     */
+    'proxy' => [
+        /**
+         * Enable or disable
+         */
+        'active' => true,
+        /**
+         * Header from which IP need to be looked at.
+         */
+        'header' => 'X-FORWARDED-FOR',
+        /**
+         * Trusted IP.
+         */
+        'ip' => [
+            
+        ]
     ]
 ];
