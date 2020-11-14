@@ -6,7 +6,7 @@ return [
      * be activated for all request. Allowed is applicable if ignoreAllowed is
      * FALSE and any of allowed type is active.
      */
-    'active' => true,
+    'active' => false,
     /*
      * When set to TRUE allowed will not be considered.
      */

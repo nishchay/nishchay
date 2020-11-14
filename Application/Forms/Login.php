@@ -8,7 +8,7 @@ use Nishchay\Http\Request\Request;
 /**
  * Description of Login
  *
- * @ClassType(type=form)
+ * @Form
  */
 class Login extends Form
 {
@@ -31,12 +31,12 @@ class Login extends Form
      * 
      * @return \Nishchay\Form\Field\Type\Input
      */
-    public function getUsername()
+    public function getEmail()
     {
-        return $this->newInput('username', 'text')
+        return $this->newInput('email', 'text')
                         ->isRequired(true)
-                        ->setValidation('string:min', 3)
-                        ->setMessage('string:min', 'Invalid username');
+                        ->setValidation('email')
+                        ->setMessage('email', 'Invalid email');
     }
 
     /**

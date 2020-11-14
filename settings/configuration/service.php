@@ -55,6 +55,8 @@ return [
          * This is required when Nishchay internal token system is used.
          * You will have to set generated token in internal session with below
          * session name.
+         * 
+         * Not required if  oatuh token is used.
          */
         'sessionName' => 'service_token',
         /**
@@ -65,7 +67,37 @@ return [
          * Nishchay will call this callback with parameter token value after
          * checking if token has been passed in header or request parameter.
          */
-        'verifyCallback' => false,
+        'verifyCallback' => 'oauth',
+        /**
+         * OAuth configurations
+         */
+        'oauth' => [
+            /**
+             * Private to be use for generating token
+             */
+            'privateKey' => dirname(__DIR__) . DS . 'keys' . DS . 'private.key',
+            /**
+             * Public to be use for verifying token
+             */
+            'publicKey' => dirname(__DIR__) . DS . 'keys' . DS . 'public.key',
+            /**
+             * 
+             */
+            'credential' => [
+                /**
+                 * Your application id to be used in generating and verifying token
+                 */
+                'appId' => '145b751b7eda6efd633e6754',
+                /**
+                 * Secret to be use along with app id.
+                 */
+                'appSecret' => '58af2c1a85544d1ca9291c19a9a7a59ff638ca6b1ee7cb652099adb811eb8b68'
+            ],
+            /**
+             * Token expiry time
+             */
+            'expiry' => 3600
+        ]
     ],
     /**
      * When you missed responding some field then Nishchay adds field in response

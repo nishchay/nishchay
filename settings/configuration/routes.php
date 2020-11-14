@@ -56,35 +56,62 @@ return [
              * Must returns parameter same as route annotation in an array.
              * 
              * Return FALSE to discard method to be considered as route
-             * Return NULL to leave as it is. In this case if there's route on
-             * method it will considered.
+             * Return NULL to leave as it is. In this case if there's route
+             * annotation on method it will considered.
              */
             'processor' => function(string $class, string $method) {
                 return false;
             }
         ]
     ],
+    /**
+     * Route visibility configuration
+     */
     'visibility' => [
+        /**
+         * Enable or disable
+         */
         'active' => true,
         'config' => [
-            [
+            'test' => [
+                /**
+                 * Enable or disable this configuration.
+                 */
                 'active' => true,
                 'eligible' => [
+                    /**
+                     * List of scopes to which this visibility setting will be applied.
+                     */
                     'scope' => [
                         'test'
                     ]
                 ],
+                /**
+                 * Define single or multiple visibility conditions.
+                 */
                 'visible' => [
                     [
+                        /**
+                         * Visible for given time ranges.
+                         */
                         'time' => [
                             ['00:00', null]
                         ],
+                        /**
+                         * Visible for given agents
+                         */
                         'agent' => [
                             'firefox'
                         ],
+                        /**
+                         * Visible for list of IPs
+                         */
                         'ip' => [
                             '127.0.0.1'
                         ],
+                        /**
+                         * Visible if given callback returns TRUE.
+                         */
                         'callback' => function() {
                             return true;
                         }

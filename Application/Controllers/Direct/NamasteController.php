@@ -16,7 +16,7 @@ class NamasteController
     /**
      * Welcome route to say namaste to an application.
      * 
-     * @Route(path='namaste')
+     * @Route(path='namaste',type=GET)
      */
     public function sayNamaste()
     {
@@ -26,7 +26,7 @@ class NamasteController
         ]);
         return 'view:namaste';
     }
-    
+
     /**
      * @Route(see=true)
      */

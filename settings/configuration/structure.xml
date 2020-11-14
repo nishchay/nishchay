@@ -47,6 +47,7 @@
         <!-- All routes which are services. -->
         <Service/>
     </Controllers>
+    <Container/>
     <Entities nest='1'/>
     <Models type='model' nest='1'/>
     <views require='1' nest='1'/>
@@ -54,7 +55,7 @@
     <!-- Exception handlers -->
     <Handler/>
     <!-- Form classes -->
-    <Forms type='form'/>
+    <Forms/>
     <!-- Various feature implementations -->
     <Features type='feature'/>
 </Application>

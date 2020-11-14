@@ -6,7 +6,7 @@ return [
      * Suppose you are making whole application web service then set this value
      * to JSON or XML.
      */
-    'default' => 'VIEW',
+    'default' => 'view',
     /**
      * View file locator.
      * Setting NULL will use Nishchay view locator.
@@ -43,5 +43,6 @@ return [
          */
         'phpFunction' => true,
     ],
+    'abstractViewPath' => 'static'
 ];
 

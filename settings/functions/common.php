@@ -96,3 +96,14 @@ function isAJAX()
 {
     return Nishchay\Http\Request\Request::isAJAX();
 }
+
+/**
+ * Returns true if route visibility config is visible.
+ * 
+ * @param string $configName
+ * @return type
+ */
+function isVisible(string $configName)
+{
+    return Nishchay\Route\Visibility::getInstance()->isConfigVisible($configName);
+}

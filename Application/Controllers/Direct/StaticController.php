@@ -6,38 +6,23 @@ namespace Application\Controllers\Direct;
  * Description of StaticController
  *
  * @Controller
+ * @Routing(pattern=actionMethod)
  */
-class StaticController
+interface StaticController
 {
 
     /**
-     * About us.
-     * 
-     * @Route(see=true,type=GET)
+     * Page for about your application.
      */
-    public function aboutUS()
-    {
-        return 'static/aboutUs';
-    }
+    public function actionGetAboutUs();
 
     /**
      * Page for application help.
-     * 
-     * @Route(see=true,type=GET)
      */
-    public function help()
-    {
-        return 'static/help';
-    }
+    public function actionGetHelp();
 
     /**
      * Page for application terms and conditions.
-     * 
-     * @Route(see=true,type=GET)
      */
-    public function terms()
-    {
-        return 'static/terms';
-    }
-
+    public function actionGetTerms();
 }
