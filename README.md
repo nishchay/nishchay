@@ -1,12 +1,13 @@
 # Nishchay PHP Framework
+<p align="center">
+  <a href="https://nishchay.io">
+      <img src="https://static.nishchay.io/resources/images/nishchay.png"/>
+  </a>
+</p>
 
 Nishchay is open structure php framework which allows us to create web application, REST web services and more.
 
-##### Learn
-
-Learn everything about nishchay [here](https://nishchay.io/learningCenter).
-
-##### Install
+## Install
 
 This framework is installed using composer only.  Use below command
 
@@ -14,7 +15,19 @@ This framework is installed using composer only.  Use below command
 composer create-project nishchay/nishchay MyNewNishchayApp
 ```
 
-###### Next thing
+## Installaion guidelines
+
+* [Linux Ubuntu](https://nishchay.io/learningCenter/installation/ubuntu/composer)
+* [Linux CentOS](https://nishchay.io/learningCenter/installation/centos/composer)
+* [Windows](https://nishchay.io/learningCenter/installation/windows/composer)
+* [MacOS](https://nishchay.io/learningCenter/installation/macos/composer)
+
+
+## Learn
+
+Learn everything about nishchay [here](https://nishchay.io/learningCenter).
+
+## Next thing
 
 This installation comes with login and register services and few static pages like about us, terms and help. To make login and register work, do as follows:
 
