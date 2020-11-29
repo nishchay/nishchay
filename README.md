@@ -5,6 +5,9 @@
   </a>
 </p>
 
+![Latest version](https://img.shields.io/packagist/v/nishchay/nishchay.svg)
+![Downloads](https://img.shields.io/packagist/dt/nishchay/nishchay.svg)
+
 Nishchay is open structure php framework which allows us to create web application, REST web services and more.
 
 ## Install
