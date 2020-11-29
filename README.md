@@ -5,6 +5,7 @@
   </a>
 </p>
 
+![PHP Version Support](https://img.shields.io/packagist/php-v/nishchay/nishchay)
 ![Latest version](https://img.shields.io/packagist/v/nishchay/nishchay.svg)
 ![Downloads](https://img.shields.io/packagist/dt/nishchay/nishchay.svg)
 
