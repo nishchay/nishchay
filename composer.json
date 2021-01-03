@@ -4,8 +4,8 @@
     "type": "project",
     "license": "BSD-3-Clause",
     "require": {
-        "php": "~7.1",
-        "nishchay/framework": "~1.0"
+        "php": "~7.2",
+        "nishchay/framework": "~1.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

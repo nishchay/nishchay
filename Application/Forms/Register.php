@@ -6,7 +6,7 @@ use Nishchay\Form\Form;
 use Nishchay\Http\Request\Request;
 
 /**
- * Description of Register
+ * User register form class.
  *
  * @Form
  */

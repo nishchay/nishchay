@@ -11,5 +11,6 @@ CREATE TABLE `User` (
     `isActive` TINYINT(1) DEFAULT 0,
     `isVerified` TINYINT(1) DEFAULT 0,
     `verifiedAt` DATETIME DEFAULT NULL,
+    `extraProperty` TEXT DEFAULT NULL,
     PRIMARY KEY (`userId`)
 );

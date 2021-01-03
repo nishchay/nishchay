@@ -3,7 +3,7 @@
 namespace Application\Controllers\Direct;
 
 /**
- * Description of StaticController
+ * Static Controller
  *
  * @Controller
  * @Routing(pattern=actionMethod)
