@@ -87,11 +87,11 @@ return [
                 /**
                  * Your application id to be used in generating and verifying token
                  */
-                'appId' => '145b751b7eda6efd633e6754',
+                'appId' => '{SERVICE_APP_ID}',
                 /**
                  * Secret to be use along with app id.
                  */
-                'appSecret' => '58af2c1a85544d1ca9291c19a9a7a59ff638ca6b1ee7cb652099adb811eb8b68'
+                'appSecret' => '{SERVICE_APP_SECRET}'
             ],
             /**
              * Token expiry time
