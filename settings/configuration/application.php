@@ -2,12 +2,12 @@
 
 return [
     /*
-    * Application information
-    */
+     * Application information
+     */
     'application' => [
         /*
-        * Name of your application.
-        */
+         * Name of your application.
+         */
         'name' => '{APP_NAME}',
         /*
          * Author of the application.
@@ -31,12 +31,7 @@ return [
          * Allowed file types.
          * Extensions separated by '|'.
          */
-        'fileTypes' => 'php|html|twig',
-        /*
-         * Landing route.
-         * This is the entry point of an application.
-         */
-        'landingRoute' => 'namaste',
+        'fileTypes' => 'php|html|twig'
     ],
     'session' => [
         /*
@@ -101,7 +96,6 @@ return [
          * Trusted IP.
          */
         'ip' => [
-            
         ]
     ]
 ];
