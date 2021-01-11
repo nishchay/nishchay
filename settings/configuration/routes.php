@@ -93,18 +93,21 @@ return [
                     [
                         /**
                          * Visible for given time ranges.
+                         * Set null to make visible all time.
                          */
                         'time' => [
                             ['00:00', null]
                         ],
                         /**
-                         * Visible for given agents
+                         * Visible for given agents.
+                         * Set NULL to make visible for all agents. 
                          */
                         'agent' => [
                             'firefox'
                         ],
                         /**
-                         * Visible for list of IPs
+                         * Visible for list of IPs.
+                         * Set NULL to make visible for all IPs
                          */
                         'ip' => [
                             '127.0.0.1'
