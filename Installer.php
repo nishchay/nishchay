@@ -26,6 +26,13 @@ class Installer
     private static $encryptionFile = __DIR__ . DIRECTORY_SEPARATOR . 'settings' . DIRECTORY_SEPARATOR . 'configuration' . DIRECTORY_SEPARATOR . 'encryption.php';
 
     /**
+     * Path to encryption settings.
+     * 
+     * @var string
+     */
+    private static $serviceFile = __DIR__ . DIRECTORY_SEPARATOR . 'settings' . DIRECTORY_SEPARATOR . 'configuration' . DIRECTORY_SEPARATOR . 'service.php';
+
+    /**
      * Ask user for application name and author name.
      * Also generates encryption key.
      * Then it updates settings content.
@@ -56,6 +63,17 @@ class Installer
         self::updateEncryptionContents($contents);
 
         self::write('Encryption generated.' . PHP_EOL . 'You can change generated encryption key.' . PHP_EOL);
+
+        # Generating main and DB key.
+        self::write('Generating appId and appSecret for services' . PHP_EOL);
+        $appId = self::getRandomString(16);
+        $appSecret = self::getRandomString(64);
+
+        # Fetching service settings content and updating it.
+        $contents = str_replace(['{SERVICE_APP_ID}', '{SERVICE_APP_SECRET}'], [$appId, $appSecret], self::getServiceContents());
+        self::updateServiceContents($contents);
+
+        self::write('AppId & AppSecret generated.' . PHP_EOL . 'You can change generated AppId & AppSecret.' . PHP_EOL);
 
         unlink(__FILE__);
     }
@@ -137,6 +155,26 @@ class Installer
     private static function updateEncryptionContents($contents)
     {
         file_put_contents(self::$encryptionFile, $contents);
+    }
+
+    /**
+     * Returns contents of encryption settings.
+     * 
+     * @return string
+     */
+    private static function getServiceContents()
+    {
+        return file_get_contents(self::$serviceFile);
+    }
+
+    /**
+     * Updates encryption setting content.
+     * 
+     * @param string $contents
+     */
+    private static function updateServiceContents($contents)
+    {
+        file_put_contents(self::$serviceFile, $contents);
     }
 
 }

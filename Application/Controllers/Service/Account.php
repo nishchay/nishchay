@@ -4,16 +4,15 @@ namespace Application\Controllers\Service;
 
 use Application\Forms\Login;
 use Application\Forms\Register;
-use Nishchay\Http\Response\Response;
 use Application\Features\Account as AccountFeature;
-
-;
+use Nishchay\Prototype\Account\Account as AccountPrototype;
+use Application\Entities\User;
 
 /**
  * Account service controller.
  * 
  * @Controller
- * @Routing(prefix='this.after:Application\Controllers',case=camel)
+ * @Routing(prefix='user',case=camel)
  */
 class Account
 {
@@ -33,29 +32,12 @@ class Account
      * @Route(see=true,type=POST)
      * @Response(type=JSON)
      */
-    public function login(Login $loginForm, AccountFeature $accountFeature)
+    public function authorize(AccountPrototype $accountPrototype)
     {
-        # Validating form. If this returns false we will send all validation
-        # error as response.
-        if ($loginForm->validate() === false) {
-
-            # Because we got validation error, setting response header
-            # status to 400
-            Response::setStatus(HTTP_STATUS_BAD_REQUEST);
-            return [
-                'error' => 'Validation failed',
-                'type' => 'ValidationError',
-                'validationErrors' => $loginForm->getErrors()
-            ];
-        }
-
-        # Authenticates and makes user login
-        $result = $accountFeature->doLogin($loginForm);
-
-        # Now setting token in session for service.
-        $this->service->setToken($result['token']);
-
-        return $result;
+        $response = $accountPrototype->getAuth(User::class)
+                ->setForm(Login::class)
+                ->execute();
+        return $response->isSuccess() ? $response->getAccessToken() : $response->getErrors();
     }
 
     /**
@@ -65,44 +47,28 @@ class Account
      * @Route(see=true,type=POST)
      * @Response(type=JSON)
      */
-    public function register(Register $registerForm, AccountFeature $accountFeature)
+    public function register(AccountPrototype $accountPrototype)
     {
+        $register = $accountPrototype->getRegister(User::class);
+        $response = $register
+                ->setForm(Register::class)
+                ->setIgnoreFileds([$register->getForm()->getTerms()->getName()])
+                ->execute();
 
-        # Validating form. If this returns false we will send all validation
-        # error as response.
-        if ($registerForm->validate() === false) {
-
-            # Because we got validation error, setting response header
-            # status to 400
-            Response::setStatus(HTTP_STATUS_BAD_REQUEST);
-            return [
-                'error' => 'Validation failed',
-                'type' => 'ValidationError',
-                'validationErrors' => $registerForm->getErrors()
-            ];
-        }
-
-        # Creating user account.
-        $result = $accountFeature->doRegister($registerForm);
-
-        # Now setting token in session for service.
-        $this->service->setToken($result['token']);
-
-        return $result;
+        return $response->isSuccess() ? $response->getAccessToken() : $response->getErrors();
     }
 
     /**
      * Returns user detail
      * 
      * @Service
-     * @NamedScope(name=secure)
-     * @Route(path='{userId}',type=GET)
-     * @Placeholder(userId=number)
+     * @NamedScope(name=user)
+     * @Route(path='/',type=GET)
      * @Response(type=JSON)
      */
-    public function getUserDetail(AccountFeature $accountFeature, $userId = '@Segment(index="userId")')
+    public function getUserDetail(AccountFeature $accountFeature)
     {
-        return $accountFeature->getUser((int) $userId);
+        return $accountFeature->getUser((int) $this->service->getUserId());
     }
 
 }

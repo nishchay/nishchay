@@ -1,5 +1,4 @@
 <?php
-
 return [
     /*
      * Nishchay check for maintenance only if below flag set to TRUE.
@@ -48,7 +47,7 @@ return [
      * If invert is TRUE, active for other then given agents.
      */
     'agent' => [
-        'active' => false,
+        'active' => true,
         'invert' => false,
         'list' => [
             ['firefox', null, 'firefox maintenance'],
@@ -106,6 +105,11 @@ return [
             'active' => false,
             'list' => [
             ]
+        ]
+    ],
+    'exception' => [
+        'ip' => [
+            '127.0.0.1'
         ]
     ]
 ];

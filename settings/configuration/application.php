@@ -2,12 +2,12 @@
 
 return [
     /*
-    * Application information
-    */
+     * Application information
+     */
     'application' => [
         /*
-        * Name of your application.
-        */
+         * Name of your application.
+         */
         'name' => '{APP_NAME}',
         /*
          * Author of the application.
@@ -31,12 +31,7 @@ return [
          * Allowed file types.
          * Extensions separated by '|'.
          */
-        'fileTypes' => 'php|html|twig',
-        /*
-         * Landing route.
-         * This is the entry point of an application.
-         */
-        'landingRoute' => 'namaste',
+        'fileTypes' => 'php|html|twig'
     ],
     'session' => [
         /*
@@ -83,6 +78,24 @@ return [
              * Cache expiry time in seconds. This should be greater than 5min (300 sec).
              */
             'expiry' => 1800
+        ]
+    ],
+    /**
+     * Below setting is used while fetching client IP.
+     */
+    'proxy' => [
+        /**
+         * Enable or disable
+         */
+        'active' => true,
+        /**
+         * Header from which IP need to be looked at.
+         */
+        'header' => 'X-FORWARDED-FOR',
+        /**
+         * Trusted IP.
+         */
+        'ip' => [
         ]
     ]
 ];

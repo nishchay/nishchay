@@ -5,30 +5,27 @@ namespace Application\Models;
 use Application\Entities\User as UserEntity;
 use Nishchay\Data\EntityManager;
 use Nishchay\Security\Encrypt\EncryptTrait;
+use Nishchay\Processor\FetchSingletonTrait;
 
 /**
- * Description of User
+ * User model class
  *
  * @ClassType(type=model)
  */
 class User
 {
 
-    use EncryptTrait;
+    use EncryptTrait,
+        FetchSingletonTrait;
 
     /**
-     * Instance of EntityManager for User entity.
+     * Returns instance EntityManager for User entity class.
      * 
-     * @var EntityManager
+     * @return EntityManager
      */
-    private $userEntity;
-
-    /**
-     * Just creates instance of EntityManager for user entity.
-     */
-    public function __construct()
+    private function getUserEntity()
     {
-        $this->userEntity = new EntityManager(UserEntity::class);
+        return $this->getInstance(EntityManager::class, [UserEntity::class]);
     }
 
     /**
@@ -39,23 +36,9 @@ class User
      */
     public function get(int $id)
     {
-        return $this->userEntity
-                        ->setUnFetchable(['password', 'createdAt', 'updatedAt', 'isDeleted', 'deletedAt'])
+        return $this->getUserEntity()
+                        ->setUnFetchable(['password', 'isActive', 'isVerified', 'verifiedAt'])
                         ->get($id);
-    }
-
-    /**
-     * Returns user detail by username.
-     * 
-     * @param string $username
-     * @return EntityManager
-     */
-    public function getUserByUsername(string $username)
-    {
-        $username = strtolower(trim($username));
-        return $this->userEntity->getEntityQuery()
-                        ->setCondition('username', $username)
-                        ->getOne();
     }
 
     /**

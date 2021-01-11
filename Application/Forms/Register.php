@@ -6,9 +6,9 @@ use Nishchay\Form\Form;
 use Nishchay\Http\Request\Request;
 
 /**
- * Description of Register
+ * User register form class.
  *
- * @ClassType(type=form)
+ * @Form
  */
 class Register extends Form
 {
@@ -31,14 +31,12 @@ class Register extends Form
      * 
      * @return \Nishchay\Form\Field\Type\Input
      */
-    public function getUsername()
+    public function getEmail()
     {
-        return $this->newInput('username', 'text')
+        return $this->newInput('email', 'text')
                         ->isRequired(true)
                         ->setValidation('string:min', 3)
-                        ->setValidation('string:max', 20)
-                        ->setMessage('string:min', l('minLength', ['field' => 'Username'], 'error'))
-                        ->setMessage('string:max', l('maxLength', ['field' => 'Username'], 'error'));
+                        ->setValidation('string:max', 20);
     }
 
     /**
@@ -51,10 +49,7 @@ class Register extends Form
         return $this->newInput('firstName', 'text')
                         ->isRequired(true)
                         ->setValidation('string:min', 3)
-                        ->setValidation('string:max', 20)
-                        ->setMessage('required', l('required', ['field' => 'First Name'], 'error'))
-                        ->setMessage('string:min', l('minLength', ['field' => 'First Name'], 'error'))
-                        ->setMessage('string:max', l('maxLength', ['field' => 'First Name'], 'error'));
+                        ->setValidation('string:max', 20);
     }
 
     /**
@@ -67,10 +62,7 @@ class Register extends Form
         return $this->newInput('lastName', 'text')
                         ->isRequired(true)
                         ->setValidation('string:min', 3)
-                        ->setValidation('string:max', 20)
-                        ->setMessage('required', l('required', ['field' => 'Last Name'], 'error'))
-                        ->setMessage('string:min', l('minLength', ['field' => 'Last Name'], 'error'))
-                        ->setMessage('string:max', l('maxLength', ['field' => 'Last Name'], 'error'));
+                        ->setValidation('string:max', 20);
     }
 
     /**
@@ -83,10 +75,7 @@ class Register extends Form
         return $this->newInput('password', 'password')
                         ->isRequired(true)
                         ->setValidation('string:min', 6)
-                        ->setValidation('string:max', 20)
-                        ->setMessage('required', l('required', ['field' => 'Password'], 'error'))
-                        ->setMessage('string:min', l('minLength', ['field' => 'Password'], 'error'))
-                        ->setMessage('string:max', l('maxLength', ['field' => 'Password'], 'error'));
+                        ->setValidation('string:max', 20);
         ;
     }
 
@@ -99,8 +88,7 @@ class Register extends Form
     {
         return $this->newInputChoice('isTermAccepted', 'checkbox')
                         ->setChoices(['Y' => ''])
-                        ->isRequired(true)
-                        ->setMessage('required', l('terms', [], 'error'));
+                        ->isRequired(true);
     }
 
 }

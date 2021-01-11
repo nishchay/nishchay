@@ -35,7 +35,7 @@ return [
         /**
          * Path where lang should be stored.
          */
-        'path' => SETTINGS . 'lang'
+        'path' => SETTINGS . 'lang' . DS
     ],
     /**
      * Applicable only when loader is db

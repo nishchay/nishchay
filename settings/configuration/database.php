@@ -30,7 +30,7 @@ return [
             /*
              * Password
              */
-            'password' => getEnvironment('DB_PASS', null),
+            'password' => getEnvironment('DB_PASS', 'root'),
             /*
              * Set connection offline
              */
@@ -176,7 +176,7 @@ return [
          * exist in that table and static data table exist in database. Nishchay
          * will not refactor.
          */
-        'refactoring' => true,
+        'refactoring' => false,
         /**
          * Whether to refactor static table when first instance of any entity
          * created.
@@ -184,7 +184,7 @@ return [
          * refactored.
          * NULL means it will use configuration value from above(refactoring).
          */
-        'staticRefactoring' => true,
+        'staticRefactoring' => false,
         /**
          * Enable or disable loading values of static properties as soon as
          * first instance of Entity class is created.

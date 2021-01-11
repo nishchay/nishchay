@@ -15,26 +15,21 @@
                 src: local('Hind Light'), local('Hind-Light'), url("{{ getResourceURL('fonts/google-hind.woff2')|raw }}") format('woff2');
             }
             body{margin: 0;padding: 0;background-color: #fff;font-family: 'Hind', sans-serif;font-size: 15px}
-            h3{text-align: center;margin: 30px 0;
-                background: linear-gradient(to right, #f8085b 36%, #00bdf5 55%);background-clip: border-box;-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
+            h3{text-align: center;margin: 30px 0;background: linear-gradient(to right, #f8085b 36%, #00bdf5 55%);background-clip: border-box;-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
             a{color: #f8085b;text-decoration: none}
             a:hover{color: #439dff;text-decoration: none}
             .header{padding: 10px 0;box-shadow:0 0 3px #f8085b;text-align: center}
             .header img{width: 150px}
-            .descr-box{margin: 30px 0}
-            .descr-content h6{font-weight: bold}
-            .equal-divide .row {display: flex;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-box-pack: justify;-webkit-justify-content: space-between;-ms-flex-pack: justify;justify-content: space-between;}
-            .equal-divide .col-sm-3{border-left:1px dashed #333}
-            .equal-divide .col-sm-3:first-child{border:0}
-            .skp-cool h5{text-align: center;font-weight: bold;margin-top: 5px}
-            .skp-cool .col-sm-2{height: 150px;box-shadow:0 0 3px #CCC;border-radius:3px;font-size: 14px}
-            .skp-cool .col-sm-2 div{text-align: justify}
-            .skp-cool .bg-red{background-color: #f8085b;color: #FFF}
-            .skp-cool .border-red{border: 1px solid #f8085b;color: #f8085b}
-            .skp-cool .bg-blue{background-color: #439dff;color: #FFF}
-            .skp-cool .border-blue{border: 1px solid #439dff;color: #439dff}
-            .footer {background-color: #FFF;margin-top: 20px;bottom: 0;width: 100%;padding: 10px;box-sizing: border-box;border-top: 1px solid #439dff;box-shadow: 1px 1px 3px #439dff;}
-            .footer h5{text-align: center;color: #439dff}
+            .content{margin-top: 50px}
+            .guide{border: 1px solid #f7f7f7;box-shadow: 0 5px 20px 0 #F9F9F9;padding: 10px;height: 700px}
+            .guide li{font-size: 18px;padding:10px}
+            .guide p{font-size: 15px;margin:20px}
+            .command-result{margin-left: 30px}
+            h5{font-weight: 600;text-align: center}
+            h5 a{border: 1px solid #f8085b;padding: 10px 20px;border-radius: 5px}
+            h5 a:hover{border-color: #439dff}
+            .whats-more{margin: 20px;padding: 10px}
+            .whats-more p{margin: 0}
         </style>
     </head>
     <body>
@@ -44,95 +39,74 @@
                     <a href="{{ nishchayUrl|raw }}" target="_blank"><img src="{{ getResourceURL('images/nishchay.png')|raw }}" alt="Nishchay Logo"/></a>
                 </div>
             </div>
-            <div class="row descr-box">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    <div class="descr-content">
-                        <p>
-                            Namaste {{ name }},
-                        </p>
-                        <div class="equal-divide">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6>Beginner? Follow first step</h6>
-                                    <ol>
-                                        <li>Create your first <a href="{{ nishchayUrl ~ '/learningCenter/request/requestHandling' }}" target="_blank">Route</a> which will handle your request.</li>
-                                        <li>Create <a href="{{ nishchayUrl ~ '/learningCenter/request/responseHandling'}}" target="_blank">View</a> for your route response.</li>
-                                        <li>That's it. You completed your first step.</li>
-                                    </ol>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h6>Handle request</h6>
-                                    <ol>
-                                        <li>Learn <a href="{{ nishchayUrl ~ '/learningCenter/request/requestHandling' }}" target="_blank">request handling</a> to create controller, route.</li>
-                                        <li>Learn <a href="{{ nishchayUrl ~ '/learningCenter/request/responseHandling' }}" target="_blank">response habdling</a> for route response.</li>
-                                        <li>Learn <a href="{{ nishchayUrl ~ '/learningCenter/request/requestStore'}}" target="_blank">request store</a> for passing data to view and share data within request.</li>
-                                    </ol>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h6>Enable Application to handle Data</h6>
-                                    <ol>
-                                        <li>Edit your database <a href="{{ nishchayUrl ~ '/learningCenter/settings/database'}}" target="_blank">setting File</a> for database connection configuration.</li>
-                                        <li>Use <a href="{{ nishchayUrl ~ '/learningCenter/consoleCommand'}}" target="_blank">Console command</a> to generate empty or crud entity or generate from template.</li>
-                                        <li>Learn more about <a href="{{ nishchayUrl ~ '/learningCenter/data/entity'}}" target="_blank">Data Management</a>.</li>
-                                    </ol>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h6>Learn more</h6>
-                                    <ol>
-                                        <li>Follow <a href="https://www.php-fig.org/psr/" target="_blank">Coding Standards</a> to keep the code clean and undestandble to everyone.</li>
-                                        <li>Learn more about application setting <a href="{{ nishchayUrl ~ '/learningCenter/settings/application'}}" target="_blank">here</a>.</li>
-                                        <li>Learn more about <a href="{{ nishchayUrl ~ '/learningCenter/guidelines'}}" target="_blank">Security Consideration</a> for application.</li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                        <h3><a href="{{ nishchayUrl ~ '/register'}}">Keep track of your learning progress by registering to nishchay.</a></h3>
-                    </div>
-                </div>
-                <div class="col-lg-1"></div>
-            </div>
             <div class="row">
                 <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    <div class="equal-divide skp-cool">
-                        <div class="row">
-                            <div class="col-sm-2 bg-red">
-                                <h5>Open Structure</h5>
-                                <div>
-                                    Create your own structure to suits your need.
-                                    Any update to Nishchay system will never affect structure.
+                <div class="col-lg-10 content">
+                    <div class="row steps-container">
+                        <div class="col-lg-6">
+                            <div class="guide">
+                                <h3>Your first tutorial</h3>
+                                <ol>
+                                    <li>Open terminal/Command prompt</li>
+                                    <li>Go to <i>{{ constant('ROOT') }}</i></li>
+                                    <li>Type <code>php nishchay prototype -generate -new</code> and hit enter</li>
+                                </ol>
+                                <div class="command-result">
+                                    <p>
+                                        This will create entity, table in database, Form class(Used for rendering form and its validation), creates crud controller along with CRUD prototype. 
+                                    </p>
+                                    <p>
+                                        Created controller will have following routes with its implementation
+                                    </p>
+
+                                    <ul>
+                                        <li>
+                                            <code>GET /</code> Fetches list of records. Use <i>limit</i> and <i>offset</i> for pagination.
+                                        </li>
+                                        <li>
+                                            <code>POST /</code> for inserting record into table.
+                                        </li>
+                                        <li>
+                                            <code>PUT /{id}</code> for updating record.
+                                        </li>
+                                        <li>
+                                            <code>DELETE /{id}</code> to delete record.
+                                        </li>
+                                        <li>
+                                            <code>GET /{id}</code> to fetch details of single record.
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-2 border-red">
-                                <h5>Web Service</h5>
-                                <div>
-                                    Develop web service which allows you define open or secure service.
-                                    This also allows filter responnse based on request.
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="guide">
+                                <h3>What you can do more</h3>
+                                <div class="whats-more">
+                                    <p>
+                                        This application comes with create account, authentication and get user implementation. 
+                                        Follow below step and then understand how it has been implemented.
+                                    </p>
+                                    <ol>
+                                        <li>Execute <code>db.sql</code></li>
+                                        <li>
+                                            Create an account using <code>POST user</code> url. Pass <code>scope = user</code>, to allow access to user data.
+                                        </li>
+                                        <li>
+                                            Check authentication using <code>POST user/authorize</code>, this service also need <code>scope = user</code>, to allow access to user data.
+                                        </li>
+                                        <li>
+                                            Use <code>accessToken</code> returned by create account or authorize service to fetch user detail using <code>GET user</code>
+                                        </li>
+                                    </ol>
                                 </div>
-                            </div>
-                            <div class="col-sm-2 border-blue">
-                                <h5>Sessions</h5>
-                                <div>
-                                    Use various kind of session. 
-                                    Each session type has their own speciality.
-                                    Session data can be stored in file, DB or memcached.
-                                </div>
-                            </div>
-                            <div class="col-sm-2 bg-blue">
-                                <h5>& more</h5>
-                                <div>
-                                    Entity Manager, Console Commands, Maintenance modes, Application Stages, Dependency Injection and many more.
-                                </div>
+                                <h5><a href="{{ nishchayUrl~'/learningCenter'|raw }}">Learn more at learning center</a></h5>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-        </div>
-        <div class="footer fixed-bottom" id="footer">
-            <h5>We only need one Nishchay(Decision)</h5>
         </div>
     </body>
 </html>
