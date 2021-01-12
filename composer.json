@@ -5,7 +5,7 @@
     "license": "BSD-3-Clause",
     "require": {
         "php": "~7.2",
-        "nishchay/framework": "~1.1@dev"
+        "nishchay/framework": "~1.1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
