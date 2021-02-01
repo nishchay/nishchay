@@ -18,7 +18,7 @@ return [
     'event' => [
         /**
          * This will be called before service checker verifies access token or
-         * fields demand. You might need this when you use default token
+         * fields demand. You might need this when you use nishchay token
          * verifier as it requires valid token to be set in session so that it
          * can be checked token received in request.
          * 
@@ -57,6 +57,7 @@ return [
          * session name.
          * 
          * Not required if  oatuh token is used.
+         * This is based on `verifyCallback` setting.
          */
         'sessionName' => 'service_token',
         /**
