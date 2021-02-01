@@ -31,7 +31,7 @@ composer create-project nishchay/nishchay {YourAppName}
 
 Learn everything about nishchay [here](https://nishchay.io/learningCenter).
 
-## Next thing
+## Your first step (First timer)
 
 If you are using framework for the first time, please go throw implementation which came with installatiion.
 
