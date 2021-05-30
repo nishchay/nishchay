@@ -4,13 +4,14 @@ namespace Application\Features;
 
 use Extension\Exception\ValidationException;
 use Application\Models\User as UserModel;
+use Nishchay\Attributes\ClassType;
 
 /**
  * Class for account feature.
  * This should contains each implementation related to user account.
  * 
- * @ClassType(type=feature)
  */
+#[ClassType(type: 'feature')]
 class Account
 {
 

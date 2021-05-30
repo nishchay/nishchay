@@ -32,6 +32,7 @@ return [
              * NULL: makes annotation optional
              * TRUE: makes annotation required
              * FALSE: Disallows annotation to be defined on method
+             * 'all' for making all routes service
              */
             'service' => null,
             /**

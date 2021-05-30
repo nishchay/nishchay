@@ -2,12 +2,14 @@
 
 namespace Application\Handler;
 
+use Nishchay\Attributes\Handler\Handler;
 
 /**
  * Global error handler for application.
  *
  * @Handler(type=global)
  */
+#[Handler(type: 'global')]
 class ErrorHandler
 {
 

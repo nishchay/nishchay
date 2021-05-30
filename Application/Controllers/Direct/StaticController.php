@@ -2,12 +2,19 @@
 
 namespace Application\Controllers\Direct;
 
+use Nishchay\Attributes\Controller\{
+    Controller,
+    Routing
+};
+
 /**
  * Static Controller
  *
  * @Controller
  * @Routing(pattern=actionMethod)
  */
+#[Controller]
+#[Routing(pattern: 'actionMethod')]
 interface StaticController
 {
 
