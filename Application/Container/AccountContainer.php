@@ -5,7 +5,6 @@ namespace Application\Container;
 use Application\Entities\User;
 use Application\Features\Account as AccountFeature;
 use Nishchay\Attributes\Container\Container;
-
 /**
  * AccountContainer class.
  *

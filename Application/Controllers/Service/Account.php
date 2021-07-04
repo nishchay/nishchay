@@ -2,11 +2,13 @@
 
 namespace Application\Controllers\Service;
 
+use Nishchay;
 use Application\Forms\Login;
 use Application\Forms\Register;
 use Application\Features\Account as AccountFeature;
 use Nishchay\Prototype\Account\Account as AccountPrototype;
 use Application\Entities\User;
+use Nishchay\Http\Request\Request;
 use Nishchay\Attributes\Controller\Property\Service as ServiceProperty;
 use Nishchay\Attributes\Controller\{
     Controller,
@@ -47,8 +49,19 @@ class Account
     {
         $response = $accountPrototype->getAuth(User::class)
                 ->setForm(Login::class)
+                ->setScopeRequired(false)
+                ->setConsiderAllScope(true)
                 ->execute();
         return $response->isSuccess() ? $response->getAccessToken() : $response->getErrors();
+    }
+
+    #[Service(token: false)]
+    #[Route(path: true, type: 'POST')]
+    #[Response(type: 'json')]
+    public function token()
+    {
+        return Nishchay::getOAuth2()
+                        ->generateTokenFromRefreshToken(Request::post('refreshToken'));
     }
 
     /**
@@ -64,6 +77,8 @@ class Account
         $response = $register
                 ->setForm(Register::class)
                 ->setIgnoreFileds([$register->getForm()->getTerms()->getName()])
+                ->setScopeRequired(false)
+                ->setConsiderAllScope(true)
                 ->execute();
 
         return $response->isSuccess() ? $response->getAccessToken() : $response->getErrors();

@@ -4,11 +4,9 @@ namespace Application\Controllers\Direct;
 
 use Nishchay;
 use Nishchay\Http\Request\RequestStore;
+use Nishchay\Attributes\Controller\Controller;
+use Nishchay\Attributes\Controller\Routing;
 use Nishchay\Attributes\Controller\Method\Route;
-use Nishchay\Attributes\Controller\{
-    Controller,
-    Routing
-};
 
 /**
  * Namaste Controller for welcome page.
