@@ -15,21 +15,19 @@
                 src: local('Hind Light'), local('Hind-Light'), url("{{ getResourceURL('fonts/google-hind.woff2')|raw }}") format('woff2');
             }
             body{margin: 0;padding: 0;background-color: #fff;font-family: 'Hind', sans-serif;font-size: 15px}
-            h3{text-align: center;margin: 30px 0;background: linear-gradient(to right, #f8085b 36%, #00bdf5 55%);background-clip: border-box;-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
+            .gradiant{text-align: center;margin: 30px 0;background: linear-gradient(to right, #f8085b 36%, #00bdf5 55%);background-clip: border-box;-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
             a{color: #f8085b;text-decoration: none}
             a:hover{color: #439dff;text-decoration: none}
             .header{padding: 10px 0;box-shadow:0 0 3px #f8085b;text-align: center}
             .header img{width: 150px}
             .content{margin-top: 50px}
-            .guide{border: 1px solid #f7f7f7;box-shadow: 0 5px 20px 0 #F9F9F9;padding: 10px;height: 700px}
-            .guide li{font-size: 18px;padding:10px}
-            .guide p{font-size: 15px;margin:20px}
-            .command-result{margin-left: 30px}
-            h5{font-weight: 600;text-align: center}
-            h5 a{border: 1px solid #f8085b;padding: 10px 20px;border-radius: 5px}
-            h5 a:hover{border-color: #439dff}
-            .whats-more{margin: 20px;padding: 10px}
-            .whats-more p{margin: 0}
+            .guide-link, .guide-link:hover{color: #000}
+            .guide{border: 1px solid #f7f7f7;padding: 10px;height: 300px;cursor: pointer;border-radius: 5px}
+            .guide h3{text-align: center;font-weight: bold;margin-top: 10px}
+            .guide-web{border-color: #00bdf5;background-color: #ddf7ff}
+            .guide-web:hover{box-shadow: 0 0 5px #00bdf5}
+            .guide-rest{border-color: #f8085b;background-color: #fff0f5}
+            .guide-rest:hover{box-shadow: 0 0 5px #f8085b}
         </style>
     </head>
     <body>
@@ -42,71 +40,36 @@
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10 content">
-                    <div class="row steps-container">
-                        <div class="col-lg-6">
-                            <div class="guide">
-                                <h3>Your first tutorial</h3>
-                                <ol>
-                                    <li>Open terminal/Command prompt</li>
-                                    <li>Go to <i>{{ constant('ROOT') }}</i></li>
-                                    <li>Type <code>php nishchay prototype -generate -new</code> and hit enter</li>
-                                </ol>
-                                <div class="command-result">
-                                    <p>
-                                        This will create entity, table in database, Form class(Used for rendering form and its validation), creates crud controller along with CRUD prototype. 
-                                    </p>
-                                    <p>
-                                        Created controller will have following routes with its implementation
-                                    </p>
+                    <h1 class="gradiant">What do you want to develop?</h1>
+                    <div class="row">
+                        <div class="col-md-3 offset-md-3">
+                            <a href="{{ nishchayUrl ~ '/learningCenter/getStarted/web' }}" class="guide-link" target="_blank">
+                                <div class="guide guide-web">
+                                    <h3>Web application</h3>
+                                    <p>Create an application which user can visit using browser along with backend processing such data handling, session management and more</p>
 
-                                    <ul>
-                                        <li>
-                                            <code>GET /</code> Fetches list of records. Use <i>limit</i> and <i>offset</i> for pagination.
-                                        </li>
-                                        <li>
-                                            <code>POST /</code> for inserting record into table.
-                                        </li>
-                                        <li>
-                                            <code>PUT /{id}</code> for updating record.
-                                        </li>
-                                        <li>
-                                            <code>DELETE /{id}</code> to delete record.
-                                        </li>
-                                        <li>
-                                            <code>GET /{id}</code> to fetch details of single record.
-                                        </li>
-                                    </ul>
+                                    <p>This can also include Bloging website, CMS tool, CRM tool, e-commerce application, business application and many more.</p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="guide">
-                                <h3>What you can do more</h3>
-                                <div class="whats-more">
+                        <div class="col-md-3">
+                            <a href="{{ nishchayUrl ~ '/learningCenter/getStarted/restApi' }}" class="guide-link" target="_blank">
+                                <div class="guide guide-rest">
+                                    <h3>REST API</h3>
                                     <p>
-                                        This application comes with create account, authentication and get user implementation. 
-                                        Follow below step and then understand how it has been implemented.
+                                        Create an application which can be act as rest API to be used mobile application, frontend website and more.
                                     </p>
-                                    <ol>
-                                        <li>Execute <code>db.sql</code></li>
-                                        <li>
-                                            Create an account using <code>POST user</code> url. Pass <code>scope = user</code>, to allow access to user data.
-                                        </li>
-                                        <li>
-                                            Check authentication using <code>POST user/authorize</code>, this service also need <code>scope = user</code>, to allow access to user data.
-                                        </li>
-                                        <li>
-                                            Use <code>accessToken</code> returned by create account or authorize service to fetch user detail using <code>GET user</code>
-                                        </li>
-                                    </ol>
+                                    <p>
+                                        This can be used by fronend only web application developed using any PWA framework or mobile application.
+                                    </p>
                                 </div>
-                                <h5><a href="{{ nishchayUrl~'/learningCenter'|raw }}">Learn more at learning center</a></h5>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-1"></div>
             </div>
+            <div class="col-lg-1"></div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
