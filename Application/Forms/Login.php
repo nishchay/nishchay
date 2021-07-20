@@ -4,12 +4,12 @@ namespace Application\Forms;
 
 use Nishchay\Form\Form;
 use Nishchay\Http\Request\Request;
-
+use Nishchay\Attributes\Form\Form as FormAttribute;
 /**
  * User login form class.
  *
- * @Form
  */
+#[FormAttribute]
 class Login extends Form
 {
 

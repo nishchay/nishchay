@@ -6,12 +6,14 @@ use Application\Entities\User as UserEntity;
 use Nishchay\Data\EntityManager;
 use Nishchay\Security\Encrypt\EncryptTrait;
 use Nishchay\Processor\FetchSingletonTrait;
+use Nishchay\Attributes\ClassType;
 
 /**
  * User model class
  *
  * @ClassType(type=model)
  */
+#[ClassType(type:'model')]
 class User
 {
 

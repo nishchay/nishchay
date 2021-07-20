@@ -4,20 +4,23 @@ namespace Application\Controllers\Direct;
 
 use Nishchay;
 use Nishchay\Http\Request\RequestStore;
+use Nishchay\Attributes\Controller\Controller;
+use Nishchay\Attributes\Controller\Routing;
+use Nishchay\Attributes\Controller\Method\Route;
 
 /**
  * Namaste Controller for welcome page.
  *
- * @Controller
  */
+#[Controller]
+#[Routing(pattern: 'crud')]
 class NamasteController
 {
 
     /**
      * Welcome route to say namaste to an application.
-     * 
-     * @Route(path='namaste',type=GET)
      */
+    #[Route(path: 'namaste', type: 'GET')]
     public function sayNamaste()
     {
         RequestStore::set('name', Nishchay::getApplicationAuthor());
@@ -28,8 +31,9 @@ class NamasteController
     }
 
     /**
-     * @Route(see=true)
+     * Maintenance route
      */
+    #[Route(path: true, incoming: false)]
     public function maintenanceRoute()
     {
         return 'error/maintenance';

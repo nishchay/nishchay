@@ -2,65 +2,92 @@
 
 namespace Application\Entities;
 
+use Nishchay\Attributes\Entity\Entity;
+use Nishchay\Attributes\Entity\Property\{
+    DataType,
+    Identity,
+    Validation
+};
+
 /**
  * Entity class for User table.
  *
- * @Entity(name='this.base')
  */
+#[Entity(name: 'this.base')]
 class User
 {
 
     /**
-     *
-     * @Identity
-     * @DataType(type=int, readonly=true)
+     * Identity property.
+     * 
+     * @var int
      */
+    #[Identity]
+    #[DataType(type: 'int', readOnly: true)]
     public $userId;
 
     /**
-     * @Validation(rule='email')
-     * @DataType(type=string, length=50, required=true,encrypt=true)
+     * Email.
+     * 
+     * @var string
      */
+    #[Validation(rule: 'email')]
+    #[DataType(type: 'string', length: 50, required: true, encrypt: true)]
     public $email;
 
     /**
-     * @Validation(rule='string:min',parameter=3)
-     * @Validation(rule='string:max',parameter=20)
-     * @DataType(type=string, length=250, required=true,encrypt=true)
+     * First name.
+     * 
+     * @var string
      */
+    #[Validation(rule: 'string:min', parameter: [3])]
+    #[Validation(rule: 'string:max', parameter: [20])]
+    #[DataType(type: 'string', length: 250, required: true, encrypt: true)]
     public $firstName;
 
     /**
-     * @Validation(rule='string:min',parameter=3)     
-     * @Validation(rule='string:max',parameter=20)
-     * @DataType(type=string, length=250, required=true,encrypt=true)
+     * Last name.
+     * 
+     * @var string
      */
+    #[Validation(rule: 'string:min', parameter: [3])]
+    #[Validation(rule: 'string:max', parameter: [20])]
+    #[DataType(type: 'string', length: 250, required: true, encrypt: true)]
     public $lastName;
 
     /**
-     *
-     * @Validation(rule='string:min',parameter=6)     
-     * @Validation(rule='string:max',parameter=250)
-     * @DataType(type=string, length=250, required=true)
+     * Password.
+     * Use hashing for password.
+     * 
+     * @var string
      */
+    #[Validation(rule: 'string:min', parameter: [3])]
+    #[Validation(rule: 'string:max', parameter: [250])]
+    #[DataType(type: 'string', length: 250, required: true)]
     public $password;
 
     /**
-     *
-     * @DataType(type=boolean,default=true)
+     * Is user active.
+     * 
+     * @var bool
      */
+    #[DataType(type: 'boolean', default: true)]
     public $isActive;
 
     /**
-     *
-     * @DataType(type=boolean,default=false)
+     * Is user verified.
+     * 
+     * @var bool
      */
+    #[DataType(type: 'boolean', default: false)]
     public $isVerified;
 
     /**
-     *
-     * @DataType(type=datetime)
+     * User verified at date and time.
+     * 
+     * @var \DateTime
      */
+    #[DataType(type: 'datetime')]
     public $verifiedAt;
 
 }

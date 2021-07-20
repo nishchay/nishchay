@@ -95,9 +95,30 @@ return [
                 'appSecret' => '{SERVICE_APP_SECRET}'
             ],
             /**
-             * Token expiry time
+             * Access token expiry time
              */
-            'expiry' => 3600
+            'expiry' => 30,
+            /**
+             * Enable or disable refresh token to be generated along with accessToken.
+             * 
+             * Once access token is generated using client credential or user credential. 
+             * OAuth can also generate refresh token. 
+             * 
+             * When access token is expired, new access token can be generated using refresh token
+             */
+            'refreshToken' => [
+                'enable' => true,
+                /**
+                 * Refresh token expiry time.
+                 * 
+                 * This must be greater than access token expiry time.
+                 */
+                'expiry' => 3600,
+                /**
+                 * Entity where refresh token data will be stored.
+                 */
+                'entity' => Application\Entities\RefreshToken::class
+            ]
         ]
     ],
     /**
