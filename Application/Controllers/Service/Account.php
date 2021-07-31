@@ -2,6 +2,7 @@
 
 namespace Application\Controllers\Service;
 
+use Nishchay;
 use Application\Forms\Login;
 use Application\Forms\Register;
 use Application\Features\Account as AccountFeature;
@@ -38,6 +39,19 @@ class Account
                 ->setForm(Login::class)
                 ->execute();
         return $response->isSuccess() ? $response->getAccessToken() : $response->getErrors();
+    }
+
+    /**
+     * Generates token from refresh token
+     * 
+     * @Service(token=false)
+     * @Route(see=true,type=POST)
+     * @Response(type=json)
+     */
+    public function token()
+    {
+        return Nishchay::getOAuth2()
+                        ->generateTokenFromRefreshToken(Request::post('refreshToken'));
     }
 
     /**
