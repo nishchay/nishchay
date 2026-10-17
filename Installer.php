@@ -33,6 +33,13 @@ class Installer
     private static $serviceFile = __DIR__ . DIRECTORY_SEPARATOR . 'settings' . DIRECTORY_SEPARATOR . 'configuration' . DIRECTORY_SEPARATOR . 'service.php';
 
     /**
+     * Directory where service token keys are stored.
+     *
+     * @var string
+     */
+    private static $keysDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'settings' . DIRECTORY_SEPARATOR . 'keys';
+
+    /**
      * Ask user for application name and author name.
      * Also generates encryption key.
      * Then it updates settings content.
@@ -75,7 +82,45 @@ class Installer
 
         self::write('AppId & AppSecret generated.' . PHP_EOL . 'You can change generated AppId & AppSecret.' . PHP_EOL);
 
+        self::generateTokenKeys();
+
         unlink(__FILE__);
+    }
+
+    /**
+     * Generates RSA key pair which is used to sign and verify service access
+     * tokens. Existing keys are never overwritten.
+     */
+    private static function generateTokenKeys()
+    {
+        $privateFile = self::$keysDirectory . DIRECTORY_SEPARATOR . 'private.key';
+        $publicFile = self::$keysDirectory . DIRECTORY_SEPARATOR . 'public.key';
+        $manual = 'Create them manually, see README.md (Generate token keys).' . PHP_EOL;
+
+        if (is_file($privateFile) || is_file($publicFile)) {
+            self::write('Token keys already exist, skipping.' . PHP_EOL);
+            return;
+        }
+
+        self::write('Generating RSA key pair for service tokens' . PHP_EOL);
+
+        $key = extension_loaded('openssl') ?
+                openssl_pkey_new(['private_key_bits' => 2048, 'private_key_type' => OPENSSL_KEYTYPE_RSA]) : false;
+
+        if ($key === false || openssl_pkey_export($key, $privateKey) === false) {
+            self::write('Could not generate token keys (openssl unavailable). ' . $manual);
+            return;
+        }
+
+        $details = openssl_pkey_get_details($key);
+        if ((is_dir(self::$keysDirectory) || mkdir(self::$keysDirectory, 0755, true)) &&
+                file_put_contents($privateFile, $privateKey) !== false &&
+                file_put_contents($publicFile, $details['key']) !== false) {
+            self::write('Token keys generated in settings/keys.' . PHP_EOL);
+            return;
+        }
+
+        self::write('Could not write token keys. ' . $manual);
     }
 
     /**

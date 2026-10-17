@@ -4,3 +4,4 @@ persisted/
 vendor/
 /nbproject/
 .DS_Store
+/settings/keys/

@@ -54,32 +54,40 @@ Database settings are located in `settings/configuration/database.php`, where yo
 
 In order to check implementation which came with installation, please execute `db.sql` which is placed at root directory of application.
 
-###### Step 3: Create account
+###### Step 3: Generate token keys
 
-If you have configured your app on domain name `http://app.nishchay.local`, then make POST request to `http://app.nishchay.local/service/account/register` with following parameters:
+Access tokens are signed with an RSA key pair. `composer create-project` generates it for you in `settings/keys/` (ignored by git), so there is nothing to do. If the installer reported that it could not (for example OpenSSL is missing), or you cloned the repository instead, generate it once:
+
+```
+mkdir -p settings/keys
+openssl genrsa -out settings/keys/private.key 2048
+openssl rsa -in settings/keys/private.key -pubout -out settings/keys/public.key
+```
+
+The paths can be changed in `settings/configuration/service.php`.
+
+###### Step 4: Create account
+
+If you have configured your app on domain name `http://app.nishchay.local`, then make POST request to `http://app.nishchay.local/user/register` with following parameters:
 
 1. email
 2. firstName
 3. lastName
 4. password
 5. isTermAccepted = Y
-6. scope=user
 
 This will return access token using which you can access services which requires token.
 
-###### Step 4: Check login
+###### Step 5: Check login
 
-Check login service by providing credential which you used while creating account in above step. This service is accessed at `http://app.nishchay.local/service/account/authorize`. Pass following parameters:
+Login requires a verified account, and this implementation has no email verification step. Mark the account you created as verified:
 
-1. email
-2. password
-3. scope=user
+```
+UPDATE `User` SET `isVerified` = 1 WHERE `email` = 'you@example.com';
+```
 
-This service also returns access token.
+Then make POST request to `http://app.nishchay.local/user/authorize` with the same `email` and `password`. This service also returns access token.
 
-###### Step 5: Get user detail
+###### Step 6: Get user detail
 
-Using `http://app.nishchay.local/service/account` service get user detail, You only need to following parameters:
-
-1. Pass access token in header with name `X-Service-Token`.
-2. Pass `scope` in GET parameter.
+Using `http://app.nishchay.local/user` service get user detail, you only need to pass access token in header with name `X-Service-Token`.
