@@ -96,4 +96,16 @@ class Account
         return $accountFeature->getUser((int) $this->service->getUserId());
     }
 
+    /**
+     * Returns list of users
+     * 
+     */
+    #[Service(token: false)]
+    #[Route(path: 'list', type: 'GET')]
+    #[Response(type: 'json')]
+    public function getUsers(AccountFeature $accountFeature)
+    {
+        return $accountFeature->getUsers();
+    }
+
 }

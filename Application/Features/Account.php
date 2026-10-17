@@ -3,7 +3,9 @@
 namespace Application\Features;
 
 use Extension\Exception\ValidationException;
+use AccountContainer;
 use Application\Models\User as UserModel;
+use Nishchay;
 use Nishchay\Attributes\ClassType;
 
 /**
@@ -55,6 +57,25 @@ class Account
 
         # Returning user detail.
         return $user->getData('array', true, false);
+    }
+
+    /**
+     * Returns all users. Entity is fetched from account container.
+     * 
+     * @return array
+     */
+    public function getUsers(): array
+    {
+        $users = AccountContainer::getEntity()
+                ->setUnFetchable(['password', 'isActive', 'isVerified', 'verifiedAt'])
+                ->getAll();
+
+        $list = [];
+        foreach ($users as $user) {
+            $list[] = $user->getData('array', true, false);
+        }
+
+        return $list;
     }
 
 }

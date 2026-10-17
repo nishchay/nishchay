@@ -13,6 +13,8 @@ use Nishchay\Attributes\Container\Container;
 class AccountContainer
 {
 
+    const FACADE = 'AccountContainer';
+
     /**
      * Returns instance of EntityManager of User entity.
      * 
