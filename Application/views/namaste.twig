@@ -1,75 +1,356 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Welcome to Nishchay</title>
         <link rel="icon" type="image/png" href="{{ getResourceURL('images/favicon.png')|raw }}" />
-        <title>Nishchay - Open structure PHP framework</title>
-        <link type="text/css" rel="stylesheet" href="{{ getResourceURL('css/bootstrap.min.css')|raw }}"/>
         <style type="text/css">
-            @font-face {
-                font-family: 'Hind';
-                font-style: normal;
-                font-weight: 300;
-                src: local('Hind Light'), local('Hind-Light'), url("{{ getResourceURL('fonts/google-hind.woff2')|raw }}") format('woff2');
+            :root {
+                --ink: #14181f;
+                --muted: #5b6472;
+                --line: #e3e7ee;
+                --soft: #f5f7fa;
+                --page: #ffffff;
+                --card: #ffffff;
+                --pink: #f8085b;
+                --blue: #0086d2;
+                --ok: #0a8f4e;
+                --ok-bg: #e5f6ed;
+                --warn: #a15c00;
+                --warn-bg: #fff3df;
+                --code-bg: #0f1722;
+                --code-ink: #e6edf7;
+                --code-dim: #8da0b8;
             }
-            body{margin: 0;padding: 0;background-color: #fff;font-family: 'Hind', sans-serif;font-size: 15px}
-            .gradiant{text-align: center;margin: 30px 0;background: linear-gradient(to right, #f8085b 36%, #00bdf5 55%);background-clip: border-box;-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
-            a{color: #f8085b;text-decoration: none}
-            a:hover{color: #439dff;text-decoration: none}
-            .header{padding: 10px 0;box-shadow:0 0 3px #f8085b;text-align: center}
-            .header img{width: 150px}
-            .content{margin-top: 50px}
-            .guide-link, .guide-link:hover{color: #000}
-            .guide{border: 1px solid #f7f7f7;padding: 10px;height: 300px;cursor: pointer;border-radius: 5px}
-            .guide h3{text-align: center;font-weight: bold;margin-top: 10px}
-            .guide-web{border-color: #00bdf5;background-color: #ddf7ff}
-            .guide-web:hover{box-shadow: 0 0 5px #00bdf5}
-            .guide-rest{border-color: #f8085b;background-color: #fff0f5}
-            .guide-rest:hover{box-shadow: 0 0 5px #f8085b}
+            @media (prefers-color-scheme: dark) {
+                :root:not([data-theme="light"]) {
+                    --ink: #eef2f8;
+                    --muted: #a4afc0;
+                    --line: #283142;
+                    --soft: #141b27;
+                    --page: #0d121b;
+                    --card: #111826;
+                    --ok: #55d68f;
+                    --ok-bg: #12301f;
+                    --warn: #ffc470;
+                    --warn-bg: #352610;
+                    --code-bg: #070b12;
+                }
+            }
+            * { box-sizing: border-box; }
+            body { margin: 0; background: var(--page); color: var(--ink); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+            a { color: var(--blue); text-decoration: none; }
+            a:hover { text-decoration: underline; }
+            code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13.5px; }
+            .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+            .top { border-bottom: 1px solid var(--line); }
+            .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+            .top img { height: 30px; display: block; }
+            .top nav a { margin-left: 20px; font-size: 14px; color: var(--muted); }
+
+            .hero { padding: 56px 0 36px; }
+            .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--pink); margin-bottom: 12px; }
+            .hero h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.15; margin: 0 0 14px; letter-spacing: -.02em; }
+            .hero p { margin: 0 0 10px; color: var(--muted); font-size: 18px; max-width: 640px; }
+            .hero .goal { margin-top: 22px; padding: 14px 18px; background: var(--soft); border: 1px solid var(--line); border-radius: 10px; font-size: 16px; color: var(--ink); }
+
+            .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+            .step { position: relative; border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 22px 22px 22px 70px; margin-bottom: 16px; }
+            .step::before { counter-increment: step; content: counter(step); position: absolute; left: 20px; top: 22px; width: 34px; height: 34px; border-radius: 50%; background: var(--soft); border: 1px solid var(--line); text-align: center; line-height: 32px; font-weight: 700; }
+            .step.done::before { content: "\2713"; background: var(--ok-bg); border-color: transparent; color: var(--ok); }
+            .step.next { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(248, 8, 91, .08); }
+            .step h2 { margin: 0 0 4px; font-size: 20px; letter-spacing: -.01em; }
+            .step .sub { margin: 0 0 14px; color: var(--muted); }
+            .chip { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 99px; margin-left: 8px; vertical-align: 3px; background: var(--soft); color: var(--muted); }
+            .chip.ok { background: var(--ok-bg); color: var(--ok); }
+            .chip.warn { background: var(--warn-bg); color: var(--warn); }
+            .chip.next { background: var(--pink); color: #fff; }
+            .note { padding: 10px 14px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); font-size: 14.5px; margin: 0 0 14px; }
+            .note code { background: transparent; }
+            .step p { margin: 0 0 12px; }
+            .step ul { margin: 0 0 12px; padding-left: 20px; }
+
+            .code { position: relative; background: var(--code-bg); color: var(--code-ink); border-radius: 10px; margin: 0 0 12px; }
+            .code pre { margin: 0; padding: 14px 92px 14px 16px; overflow-x: auto; white-space: pre; line-height: 1.55; }
+            .code .dim { color: var(--code-dim); }
+            .code .actions { position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; }
+            .btn { font: inherit; font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 6px; border: 1px solid #33425a; background: #1a2536; color: #dbe5f3; cursor: pointer; }
+            .btn:hover { background: #243249; }
+            .btn.run { background: var(--pink); border-color: var(--pink); color: #fff; }
+            .btn.run:hover { background: #d9064f; }
+            .result { display: none; margin: -4px 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--soft); }
+            .result.show { display: block; }
+            .result .head { padding: 6px 14px; border-bottom: 1px solid var(--line); font-size: 12.5px; font-weight: 600; color: var(--muted); }
+            .result .head .st-ok { color: var(--ok); }
+            .result .head .st-bad { color: var(--pink); }
+            .result pre { margin: 0; padding: 12px 14px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+
+            table.answers { width: 100%; border-collapse: collapse; margin: 0 0 12px; font-size: 14.5px; }
+            table.answers th, table.answers td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+            table.answers th { font-size: 12.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+            table.answers td code { background: var(--soft); padding: 1px 6px; border-radius: 4px; }
+            .tree { background: var(--soft); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 0 0 12px; }
+            .tree div { padding: 2px 0; }
+            .tree .what { color: var(--muted); }
+
+            h3.section { font-size: 24px; margin: 52px 0 6px; letter-spacing: -.01em; }
+            .lead { color: var(--muted); margin: 0 0 20px; }
+            .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+            .card { display: block; border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 18px; color: var(--ink); }
+            .card:hover { border-color: var(--blue); text-decoration: none; }
+            .card strong { display: block; font-size: 16px; margin-bottom: 4px; }
+            .card span { color: var(--muted); font-size: 14.5px; }
+            .card em { display: block; margin-top: 10px; font-style: normal; font-size: 13px; color: var(--blue); }
+
+            .map { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; margin: 0; padding: 0; list-style: none; }
+            .map li { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+            .map code { background: var(--soft); padding: 1px 6px; border-radius: 4px; }
+            .map span { color: var(--muted); }
+
+            .foot { margin: 56px 0 0; padding: 22px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+            @media (max-width: 640px) {
+                .step { padding: 64px 16px 18px; }
+                .step::before { left: 16px; top: 16px; }
+                .map { grid-template-columns: 1fr; }
+                .top nav a:not(:first-child) { display: none; }
+            }
         </style>
     </head>
     <body>
-        <div class="container-fluid wrapper">
-            <div class="row text-center header">
-                <div class="col-lg-12">
-                    <a href="{{ nishchayUrl|raw }}" target="_blank"><img src="{{ getResourceURL('images/nishchay.png')|raw }}" alt="Nishchay Logo"/></a>
-                </div>
+        <header class="top">
+            <div class="wrap">
+                <a href="{{ nishchayUrl|raw }}" target="_blank" rel="noopener"><img src="{{ getResourceURL('images/nishchay.png')|raw }}" alt="Nishchay"/></a>
+                <nav>
+                    <a href="{{ nishchayUrl ~ '/learningCenter' }}" target="_blank" rel="noopener">Documentation</a>
+                    <a href="https://github.com/nishchay/framework" target="_blank" rel="noopener">GitHub</a>
+                </nav>
             </div>
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10 content">
-                    <h1 class="gradiant">What do you want to develop?</h1>
-                    <div class="row">
-                        <div class="col-md-3 offset-md-3">
-                            <a href="{{ nishchayUrl ~ '/learningCenter/getStarted/web' }}" class="guide-link" target="_blank">
-                                <div class="guide guide-web">
-                                    <h3>Web application</h3>
-                                    <p>Create an application which user can visit using browser along with backend processing such data handling, session management and more</p>
+        </header>
 
-                                    <p>This can also include Bloging website, CMS tool, CRM tool, e-commerce application, business application and many more.</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="{{ nishchayUrl ~ '/learningCenter/getStarted/restApi' }}" class="guide-link" target="_blank">
-                                <div class="guide guide-rest">
-                                    <h3>REST API</h3>
-                                    <p>
-                                        Create an application which can be act as rest API to be used mobile application, frontend website and more.
-                                    </p>
-                                    <p>
-                                        This can be used by fronend only web application developed using any PWA framework or mobile application.
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
+        <main class="wrap">
+            <section class="hero">
+                <span class="eyebrow">Your application is running</span>
+                <h1>Welcome to Nishchay{% if appName and appName != '{APP_NAME}' %}, {{ appName }}{% endif %}</h1>
+                <p>Nishchay is an open structure PHP framework. You decide how your project is organised: MVC, HMVC or a layout of your own.</p>
+                <div class="goal"><strong>In about 10 minutes</strong> you will generate a small <em>tasks</em> API, call it, and change it. That is enough to see how the pieces fit.</div>
+            </section>
+
+            <ol class="steps">
+                <li class="step done" id="step1">
+                    <h2>Check your setup <span class="chip ok">Server running</span>
+                        {% if databaseOk %}<span class="chip ok">Database connected</span>{% else %}<span class="chip warn">Database not reachable</span>{% endif %}
+                    </h2>
+                    <p class="sub">This page is served by your new application, so PHP and the web server are working.</p>
+                    {% if not databaseOk %}
+                    <div class="note">
+                        <strong>Connect a database first.</strong> {{ databaseError }}<br>
+                        Set the connection in <code>settings/configuration/database.php</code> (or the <code>DB_*</code> environment variables), then import <code>db.sql</code> from the project folder.
                     </div>
-                </div>
+                    {% endif %}
+                </li>
+
+                <li class="step {% if myEntities|length > 0 %}done{% else %}next{% endif %}" id="step2">
+                    <h2>Generate your first resource
+                        {% if myEntities|length > 0 %}<span class="chip ok">Found {{ myEntities|join(', ') }}</span>{% else %}<span class="chip next">Do this next</span>{% endif %}
+                    </h2>
+                    <p class="sub">One console command creates an entity, its database table, a form and a controller with all five CRUD routes.</p>
+                    <p>Open a terminal in your project folder and run:</p>
+                    <div class="code"><pre>php nishchay prototype -generate -new</pre><div class="actions"><button class="btn" data-copy="php nishchay prototype -generate -new">Copy</button></div></div>
+                    <p>It asks a few questions. Answer like this:</p>
+                    <table class="answers">
+                        <tr><th>When it asks</th><th>Type</th></tr>
+                        <tr><td>Enter entity name</td><td><code>Task</code></td></tr>
+                        <tr><td>Enter property name (first one becomes the identity)</td><td><code>taskId</code></td></tr>
+                        <tr><td>Enter property name, then Select Data type</td><td><code>title</code> then <code>4</code> (string)</td></tr>
+                        <tr><td>Enter property name, then Select Data type</td><td><code>isDone</code> then <code>9</code> (boolean)</td></tr>
+                        <tr><td>Enter property name</td><td><code>q</code> (to stop)</td></tr>
+                        <tr><td>Do you want to create table in DB?</td><td><code>y</code></td></tr>
+                        <tr><td>Where do you want to create</td><td><code>1</code> (Application\Controllers)</td></tr>
+                        <tr><td>Enter route name</td><td><code>tasks</code></td></tr>
+                    </table>
+                    <p>Afterwards you have three new files and a <code>Task</code> table:</p>
+                    <div class="tree">
+                        <div><code>Application/Entities/Task.php</code> <span class="what">maps the class to the table</span></div>
+                        <div><code>Application/Forms/Task.php</code> <span class="what">validates what clients send</span></div>
+                        <div><code>Application/Controllers/Task.php</code> <span class="what">the routes under <code>/tasks</code></span></div>
+                    </div>
+                    <p>Reload this page and this step turns green.</p>
+                </li>
+
+                <li class="step" id="step3">
+                    <h2>Call your API <span class="chip" id="chip3">Waiting for a request</span></h2>
+                    <p class="sub">Use curl from a terminal, or press <b>Run</b> and this page sends the request for you.</p>
+
+                    <div class="code"><pre><span class="dim"># create a task</span>
+curl -X POST <span class="origin"></span>/tasks -d "title=Read the docs" -d "isDone=false"</pre><div class="actions"><button class="btn" data-copy-curl>Copy</button><button class="btn run" data-method="POST" data-path="/tasks" data-body="title=Read the docs&amp;isDone=false">Run</button></div></div>
+                    <div class="result"></div>
+
+                    <div class="code"><pre><span class="dim"># list tasks</span>
+curl <span class="origin"></span>/tasks</pre><div class="actions"><button class="btn" data-copy-curl>Copy</button><button class="btn run" data-method="GET" data-path="/tasks">Run</button></div></div>
+                    <div class="result"></div>
+
+                    <div class="code"><pre><span class="dim"># mark task 1 as done</span>
+curl -X PUT <span class="origin"></span>/tasks/1 -d "title=Read the docs" -d "isDone=true"</pre><div class="actions"><button class="btn" data-copy-curl>Copy</button><button class="btn run" data-method="PUT" data-path="/tasks/1" data-body="title=Read the docs&amp;isDone=true">Run</button></div></div>
+                    <div class="result"></div>
+
+                    <div class="code"><pre><span class="dim"># delete it</span>
+curl -X DELETE <span class="origin"></span>/tasks/1</pre><div class="actions"><button class="btn" data-copy-curl>Copy</button><button class="btn run" data-method="DELETE" data-path="/tasks/1">Run</button></div></div>
+                    <div class="result"></div>
+                    <p>Nothing here was written by hand. Create, list, get, update and delete all came from one command.</p>
+                </li>
+
+                <li class="step" id="step4">
+                    <h2>See how it fits together</h2>
+                    <p class="sub">Open the three generated files. Each one is short.</p>
+                    <ul>
+                        <li><b>Entity</b>: a plain class with PHP attributes such as <code>#[Entity]</code> and <code>#[DataType]</code>. The framework turns it into queries.</li>
+                        <li><b>Form</b>: one method per field, with validation rules. The controller refuses bad input before it reaches your data.</li>
+                        <li><b>Controller</b>: routes are declared with <code>#[Route]</code> on methods. The generated ones call the built in <code>Crud</code> prototype, so you can replace any of them with your own code.</li>
+                    </ul>
+                    <p>This is the open structure idea. Folders like <code>Controllers</code>, <code>Entities</code> and <code>Forms</code> are only a recommendation. <code>settings/configuration/structure.xml</code> describes the layout your project uses, and it already lists MVC, HMVC and module layouts you can switch to.</p>
+                </li>
+
+                <li class="step" id="step5">
+                    <h2>Make it yours</h2>
+                    <p class="sub">A small change that shows how the pieces connect: make the title required.</p>
+                    <p>In <code>Application/Forms/Task.php</code> add <code>isRequired()</code> to the title field:</p>
+                    <div class="code"><pre>return $this-&gt;newInput('title', 'text')
+                ->isRequired();</pre><div class="actions"><button class="btn" data-copy="return $this->newInput('title', 'text')&#10;                ->isRequired();">Copy</button></div></div>
+                    <p>Then create a task with no title. The API now answers with a <code>400</code> and a message for the title field.</p>
+                    <div class="code"><pre>curl -X POST <span class="origin"></span>/tasks -d "isDone=false"</pre><div class="actions"><button class="btn" data-copy-curl>Copy</button><button class="btn run" data-method="POST" data-path="/tasks" data-body="isDone=false">Run</button></div></div>
+                    <div class="result"></div>
+                </li>
+            </ol>
+
+            <h3 class="section">Where to go next</h3>
+            <p class="lead">Pick the path that matches what you are building.</p>
+            <div class="grid">
+                <a class="card" href="{{ nishchayUrl ~ '/learningCenter/request/viewTemplate' }}" target="_blank" rel="noopener"><strong>Build web pages</strong><span>Render HTML with Twig views, like the page you are reading.</span><em>Views and templates</em></a>
+                <a class="card" href="{{ nishchayUrl ~ '/learningCenter/service/webService' }}" target="_blank" rel="noopener"><strong>Protect your API</strong><span>Tokens, field filtering and response formats. A register and login service is already included under <code>/user</code>.</span><em>Web services</em></a>
+                <a class="card" href="{{ nishchayUrl ~ '/learningCenter/data/entity' }}" target="_blank" rel="noopener"><strong>Work with data</strong><span>Relations, queries and everything the entity manager can do.</span><em>Entities</em></a>
+                <a class="card" href="{{ nishchayUrl ~ '/learningCenter/container' }}" target="_blank" rel="noopener"><strong>Organise your code</strong><span>Containers and facades give one line access to entities and features.</span><em>Containers</em></a>
+                <a class="card" href="{{ nishchayUrl ~ '/learningCenter/security/validation' }}" target="_blank" rel="noopener"><strong>Validate input</strong><span>Rules for forms and request data.</span><em>Validation</em></a>
+                <a class="card" href="{{ nishchayUrl ~ '/learningCenter/consoleCommand' }}" target="_blank" rel="noopener"><strong>Use the console</strong><span>Generate controllers, entities, forms and prototypes from the command line.</span><em>Console commands</em></a>
             </div>
-            <div class="col-lg-1"></div>
-        </div>
-    </div>
-</body>
+
+            <h3 class="section">What came with your project</h3>
+            <p class="lead">A quick map, so you know where to look.</p>
+            <ul class="map">
+                <li><code>Application/Controllers</code> <span>routes</span></li>
+                <li><code>Application/Entities</code> <span>tables as classes</span></li>
+                <li><code>Application/Forms</code> <span>validation</span></li>
+                <li><code>Application/Container</code> <span>containers and facades</span></li>
+                <li><code>Application/views</code> <span>Twig templates (this page)</span></li>
+                <li><code>settings/configuration</code> <span>database, routes, service, mail...</span></li>
+                <li><code>settings/env</code> <span>values per environment</span></li>
+                <li><code>public</code> <span>web root and assets</span></li>
+            </ul>
+
+            <footer class="foot">
+                When you are ready to replace this page, change the <code>landing</code> route in <code>settings/configuration/routes.php</code>.
+            </footer>
+        </main>
+
+        <script>
+            (function () {
+                var origin = window.location.origin;
+                var origins = document.querySelectorAll('.origin');
+                for (var i = 0; i < origins.length; i++) {
+                    origins[i].textContent = origin;
+                }
+
+                function copy(text, button) {
+                    function done() {
+                        var label = button.textContent;
+                        button.textContent = 'Copied';
+                        setTimeout(function () { button.textContent = label; }, 1200);
+                    }
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(done, function () {});
+                        return;
+                    }
+                    var area = document.createElement('textarea');
+                    area.value = text;
+                    document.body.appendChild(area);
+                    area.select();
+                    try { document.execCommand('copy'); done(); } catch (e) {}
+                    document.body.removeChild(area);
+                }
+
+                var buttons = document.querySelectorAll('[data-copy]');
+                for (var b = 0; b < buttons.length; b++) {
+                    buttons[b].addEventListener('click', function () {
+                        copy(this.getAttribute('data-copy'), this);
+                    });
+                }
+
+                // Copy for curl blocks: the command is the text without comment lines.
+                var curls = document.querySelectorAll('[data-copy-curl]');
+                for (var c = 0; c < curls.length; c++) {
+                    curls[c].addEventListener('click', function () {
+                        var pre = this.closest('.code').querySelector('pre');
+                        var lines = pre.textContent.split('\n').filter(function (line) {
+                            return line.trim().charAt(0) !== '#';
+                        });
+                        copy(lines.join('\n'), this);
+                    });
+                }
+
+                // Run buttons call the application and show the response below the block.
+                var runs = document.querySelectorAll('.btn.run');
+                for (var r = 0; r < runs.length; r++) {
+                    runs[r].addEventListener('click', function () {
+                        var button = this;
+                        var result = button.closest('.code').nextElementSibling;
+                        var options = {method: button.getAttribute('data-method'), headers: {}};
+                        var body = button.getAttribute('data-body');
+                        if (body) {
+                            options.body = body;
+                            options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+                        }
+                        button.disabled = true;
+                        fetch(button.getAttribute('data-path'), options).then(function (response) {
+                            return response.text().then(function (text) {
+                                var pretty = text;
+                                try { pretty = JSON.stringify(JSON.parse(text), null, 2); } catch (e) {}
+                                show(result, response.status, pretty);
+                                if (response.ok) {
+                                    var chip = document.getElementById('chip3');
+                                    chip.textContent = 'Your API works';
+                                    chip.className = 'chip ok';
+                                    document.getElementById('step3').className = 'step done';
+                                }
+                            });
+                        }).catch(function (error) {
+                            show(result, 0, String(error));
+                        }).then(function () {
+                            button.disabled = false;
+                        });
+                    });
+                }
+
+                function show(result, status, text) {
+                    var ok = status >= 200 && status < 300;
+                    var note = '';
+                    if (status === 404) {
+                        note = '\n\nThe route was not found. Did you finish step 2 and type "tasks" as the route name?';
+                    }
+                    result.innerHTML = '';
+                    var head = document.createElement('div');
+                    head.className = 'head';
+                    var label = document.createElement('span');
+                    label.className = ok ? 'st-ok' : 'st-bad';
+                    label.textContent = status === 0 ? 'No response' : 'HTTP ' + status;
+                    head.appendChild(label);
+                    var pre = document.createElement('pre');
+                    pre.textContent = (text.length > 1500 ? text.substring(0, 1500) + '...' : text) + note;
+                    result.appendChild(head);
+                    result.appendChild(pre);
+                    result.className = 'result show';
+                }
+            })();
+        </script>
+    </body>
 </html>
